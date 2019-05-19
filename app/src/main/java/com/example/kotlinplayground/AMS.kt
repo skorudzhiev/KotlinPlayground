@@ -23,13 +23,17 @@ fun canAddFish(tankSize: Double, currentFish: List<Int>, fishSize: Int = 2, hasD
     return (tankSize * if (hasDecorations) 0.8 else 1.0) >= (currentFish.sum() + fishSize)
 }
 
+fun isTooHot(temperature: Int) = temperature > 30
+fun isTooDirty(dirty: Int) = dirty > 30
+fun isSunday(day: String) = day == "Sunday"
+
 fun shouldChangeWater(day: String,
                       temperature: Int = 22,
                       dirty: Int = 20): Boolean {
     return when {
-        temperature > 30 -> true
-        dirty > 30 -> true
-        day == "Sunday" -> true
+        isTooHot(temperature) -> true
+        isTooDirty(dirty) -> true
+        isSunday(day) -> true
         else -> false
     }
 }
