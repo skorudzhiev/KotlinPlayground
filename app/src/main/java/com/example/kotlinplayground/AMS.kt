@@ -26,7 +26,12 @@ fun canAddFish(tankSize: Double, currentFish: List<Int>, fishSize: Int = 2, hasD
 fun shouldChangeWater(day: String,
                       temperature: Int = 22,
                       dirty: Int = 20): Boolean {
-    return true
+    return when {
+        temperature > 30 -> true
+        dirty > 30 -> true
+        day == "Sunday" -> true
+        else -> false
+    }
 }
 
 fun feedTheFish() {
@@ -35,7 +40,8 @@ fun feedTheFish() {
     println("Today is $day and the fish eat $food")
     shouldChangeWater(day, 20, 50)
 
-    if (shouldChangeWater(day)) println("Change the water today")
+    if (shouldChangeWater(day)) println("Change the water today!")
+    else println("The water's condition is still fine and can be changed another day.")
 
 }
 
