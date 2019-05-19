@@ -33,6 +33,6 @@ fun playFortuneForTen() {
     for (i in 1..10) {
         fortune = getFortuneCookie()
         println("\nYour fortune is: $fortune")
-        if (fortune.contains("Take it easy")) break;
+        if (fortune.contains("Take it easy")) break
     }
 }
