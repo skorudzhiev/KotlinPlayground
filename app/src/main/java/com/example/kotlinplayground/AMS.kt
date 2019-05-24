@@ -71,6 +71,24 @@ fun feedTheFish() {
     if (shouldChangeWater(day)) println("Change the water today!")
     else println("The water's condition is still fine and can be changed another day.")
 
+    // call the dirty processor
+    dirtyProcessor()
+}
+
+var dirty = 20
+val waterFilter: (Int) -> Int = { dirty -> dirty / 2 }
+fun feedFish(dirty: Int) = dirty + 10
+
+fun updateDirty(dirty: Int, operation: (Int) -> Int): Int {
+    return operation(dirty)
+}
+
+fun dirtyProcessor() {
+    dirty = updateDirty(dirty, waterFilter)
+    dirty = updateDirty(dirty, ::feedFish)
+    dirty = updateDirty(dirty) { dirty ->
+        dirty + 50
+    }
 }
 
 fun fishFood(day: String): String {
