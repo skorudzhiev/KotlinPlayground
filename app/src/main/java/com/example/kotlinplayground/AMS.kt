@@ -6,6 +6,30 @@ import java.util.*
 fun main() {
     println("Hello World!")
     feedTheFish()
+    eagerExample()
+}
+
+fun eagerExample() {
+    val decorations = listOf ("rock", "pagoda", "plastic plant", "alligator", "flowerpot")
+
+    val eager = decorations.filter { it[0] == 'p' }
+    println(eager)
+
+    // apply filter lazily
+    val filtered = decorations.asSequence().filter { it[0] == 'p' }
+    println(filtered)
+    println(filtered.toList())
+
+    // apply filter lazily
+    val lazyMap = decorations.asSequence().map {
+        println("map: $it")
+        it
+    }
+
+    println()
+    println(lazyMap)
+    println("first: ${lazyMap.first()}")
+    println("all: ${lazyMap.toList()}")
 }
 
 /**
