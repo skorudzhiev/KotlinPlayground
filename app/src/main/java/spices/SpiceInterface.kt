@@ -18,9 +18,10 @@ interface Grinder {
 }
 
 interface SpiceColor {
-    val color: String
+    val colors: spices.Colors
 }
 
 object YellowSpiceColor : SpiceColor {
-    override val color = "Yellow"
+    override val colors: spices.Colors
+        get() = spices.Colors.YELLOW
 }
