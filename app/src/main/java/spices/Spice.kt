@@ -29,4 +29,6 @@ class Spice(val name: String, val spiciness: String = "mild") {
     val spiceList = spices1.filter { it.heat < 5 }
 
     fun makeSalt() = Spice("salt")
+
+
 }
