@@ -1,5 +1,7 @@
 package com.example.kotlinplayground
 
+const val MAX_NUMBER_BOOKS = 20
+
 fun main() {
 
     val book = Book("Romeo and Juliet", "William Shakespeare", 1597)
@@ -19,9 +21,15 @@ fun main() {
     moreBooks.getOrPut("Jungle Book") { "Kipling" }
     moreBooks.getOrPut("Hamlet") { "Shakespeare" }
     println(moreBooks)
+
+    book.printUrl()
 }
 
 open class Book(val title: String, val author: String, val year: Int) {
+
+    companion object {
+            const val BASE_URL = "http://www.turtlecare.net/"
+    }
 
     private var currentPage = 1
 
@@ -35,6 +43,14 @@ open class Book(val title: String, val author: String, val year: Int) {
 
     fun getTitleAuthorYear(): Triple<String, String, Int> {
         return Triple(title, author, year)
+    }
+
+    fun canBorrow(hasBooks: Int): Boolean {
+        return (hasBooks < MAX_NUMBER_BOOKS)
+    }
+
+    fun printUrl() {
+        println("$BASE_URL$title.html")
     }
 }
 
