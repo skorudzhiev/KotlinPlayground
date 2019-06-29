@@ -1,4 +1,4 @@
-package decorations
+package aquarium.decorations
 
 fun main() {
     makeDecorations()
