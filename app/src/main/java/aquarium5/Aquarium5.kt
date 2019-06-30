@@ -9,9 +9,15 @@ fun main() {
 fun fishExamples() {
     val fish = Fish("splashy")
 
-    myWith(fish.name) {
-        println(capitalize())
-    }
+    // without inline an object is created with every call to myWith
+    myWith(fish.name, object : Function1<String, Unit> {
+        override fun invoke(name: String) {
+            name.capitalize()
+        }
+    })
+
+    // with inline no object is created, and lambda body is inlined here
+    fish.name.capitalize()
 
     println(fish.run { name })
     println(fish.apply {})
@@ -25,6 +31,6 @@ fun fishExamples() {
         .let { it + 31 })
 }
 
-fun myWith(name: String, block: String.() -> Unit) {
+inline fun myWith(name: String, block: String.() -> Unit) {
     name.block()
 }
